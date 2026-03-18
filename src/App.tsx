@@ -82,6 +82,9 @@ export default function App() {
           </div>
         </div>
         <div className="flex items-center gap-4">
+          {!process.env.GEMINI_API_KEY && (
+            <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" title="API Key Missing" />
+          )}
           <Bell className="w-5 h-5 text-gray-600" />
           <div className="w-8 h-8 rounded-full bg-[#0056b3] flex items-center justify-center text-white text-xs font-bold">
             JD
@@ -191,8 +194,21 @@ export default function App() {
             </motion.div>
           ))
         ) : (
-          <div className="text-center py-20 text-gray-400">
-            Nenhuma notícia encontrada.
+          <div className="text-center py-20 px-6 space-y-4">
+            <div className="text-gray-400">
+              {searchQuery ? "Nenhuma notícia encontrada para sua busca." : "Não foi possível carregar as notícias."}
+            </div>
+            {!process.env.GEMINI_API_KEY && (
+              <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs text-amber-700">
+                <strong>Aviso:</strong> A chave da API Gemini não foi encontrada. Se você estiver usando um APK, certifique-se de que a chave foi incluída no processo de build.
+              </div>
+            )}
+            <button 
+              onClick={handleRefresh}
+              className="px-6 py-2 bg-[#0056b3] text-white rounded-full text-sm font-bold shadow-md"
+            >
+              Tentar Novamente
+            </button>
           </div>
         )}
       </main>

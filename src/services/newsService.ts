@@ -1,6 +1,11 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || "" });
+const apiKey = process.env.GEMINI_API_KEY || "";
+if (!apiKey) {
+  console.warn("GEMINI_API_KEY is missing. News fetching will fail. Please ensure the API key is set in your environment variables.");
+}
+
+const ai = new GoogleGenAI({ apiKey });
 
 export interface NewsItem {
   id: string;
@@ -15,6 +20,11 @@ export interface NewsItem {
 }
 
 export async function fetchNews(category: string = "General"): Promise<NewsItem[]> {
+  if (!apiKey) {
+    console.error("Cannot fetch news: GEMINI_API_KEY is not defined.");
+    return [];
+  }
+
   try {
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
@@ -58,10 +68,16 @@ export async function fetchNews(category: string = "General"): Promise<NewsItem[
     });
 
     const text = response.text;
-    if (!text) return [];
+    if (!text) {
+      console.error("Empty response from Gemini API");
+      return [];
+    }
     return JSON.parse(text);
-  } catch (error) {
-    console.error("Error fetching news:", error);
+  } catch (error: any) {
+    console.error("Error fetching news from Gemini:", error);
+    if (error.message?.includes("API key not valid")) {
+      console.error("The provided Gemini API key is invalid.");
+    }
     return [];
   }
 }

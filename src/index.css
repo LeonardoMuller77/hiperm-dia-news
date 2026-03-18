@@ -13,12 +13,17 @@
 }
 
 .hipermidia-logo {
-  @apply bg-[#0056b3] border-4 border-white px-4 py-1 inline-block;
-  font-family: sans-serif;
-  font-style: italic;
-  font-weight: 800;
+  @apply bg-[#0056b3] border-[8px] border-white px-10 py-4 flex items-center gap-6;
+  font-family: "Inter", sans-serif;
   color: white;
-  letter-spacing: -0.05em;
+}
+
+.hipermidia-text {
+  @apply text-5xl font-black italic tracking-tighter lowercase;
+}
+
+.news-text {
+  @apply text-5xl font-normal tracking-[0.15em] uppercase;
 }
 
 .hide-scrollbar::-webkit-scrollbar {
