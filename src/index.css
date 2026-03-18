@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0056b3;
+  --color-secondary: #f8f9fa;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+  }
+}
+
+.hipermidia-logo {
+  @apply bg-[#0056b3] border-[8px] border-white px-10 py-4 flex items-center gap-6;
+  font-family: "Inter", sans-serif;
+  color: white;
+}
+
+.hipermidia-text {
+  @apply text-5xl font-black italic tracking-tighter lowercase;
+}
+
+.news-text {
+  @apply text-5xl font-normal tracking-[0.15em] uppercase;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
