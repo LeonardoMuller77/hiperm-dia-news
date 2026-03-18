@@ -76,11 +76,10 @@ export default function App() {
       <header className="bg-white border-b border-gray-100 sticky top-0 z-30 px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Menu className="w-6 h-6 text-gray-600" />
-          <img 
-            src="/logo.png" 
-            alt="Hipermídia News" 
-            className="h-10 w-auto object-contain"
-          />
+          <div className="hipermidia-logo text-xl">
+            hipermídia
+            <span className="ml-1 text-xs font-normal not-italic opacity-80 uppercase tracking-widest">News</span>
+          </div>
         </div>
         <div className="flex items-center gap-4">
           <Bell className="w-5 h-5 text-gray-600" />

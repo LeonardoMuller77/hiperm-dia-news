@@ -1,1 +1,0 @@
-# Arquivos estáticos aqui
